@@ -11,13 +11,19 @@
 		<v-toolbar-items>
 			<router-link v-if="!$store.state.isUserLoggedIn" :to="{name:'register'}" tag="v-btn" class="btn btn--flat theme--dark">Sign Up</router-link>
 		</v-toolbar-items>
+		<v-toolbar-items>
+			<v-btn v-if="$store.state.isUserLoggedIn" flat dark @click="logout">
+			Log Out</v-btn>
+		</v-toolbar-items>
 	</v-toolbar>
 </template>
 <script>
 	export default{
-		data(){
-			return {
-
+		methods: {
+			logout(){
+				this.$store.dispatch('setToken', null);
+				this.$store.dispatch('setUser', null);
+				this.$router.push({name: 'root'})
 			}
 		}
 	}
