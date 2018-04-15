@@ -1,6 +1,7 @@
 const jwt = require('jwt-simple');
 const User = require('../models/user');
 const config = require('../config');
+const Joi = require('joi');
 
 function tokenForUser(user){
 	const timestamp = new Date().getTime();
@@ -9,7 +10,7 @@ function tokenForUser(user){
 
 exports.signin = function(req,res,next){
 	//user has already been authd, time to give them their token
-	res.send({token: tokenForUser(req.user), user: req.user.email});
+	res.send({token: tokenForUser(req.user), user: req.user});
 }
 
 exports.signup = function(req,res,next){
@@ -32,7 +33,7 @@ exports.signup = function(req,res,next){
 		user.save(err => {
 			if(err){return next(err);}
 			// Respond to request indicating the user was created
-			res.json({token: tokenForUser(user), user: req.user.email});	
+			res.json({token: tokenForUser(user), user: user});	
 		});
 	})
 }
