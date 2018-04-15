@@ -1,8 +1,8 @@
 <template>
 	<v-toolbar fixed dark class="cyan">
-		<router-link :to="{name:'root'}" tag="v-toolbar-title" class="home mr-4 btn btn--flat theme--dark">TabTracker</router-link>
+			<router-link :to="{name:'root'}" tag="v-toolbar-title" class="home mr-4 btn btn--flat theme--dark">TabTracker</router-link>
 		<v-toolbar-items>
-			<v-btn flat dark>Browse</v-btn>
+			<router-link :to="{name:'songs'}" tag="v-btn" class="btn btn--flat theme--dark">Browse</router-link>
 		</v-toolbar-items>
 		<v-spacer></v-spacer>
 		<v-toolbar-items>
@@ -14,7 +14,7 @@
 		<v-toolbar-items>
 			<v-btn v-if="$store.state.isUserLoggedIn" flat dark @click="logout">
 			Log Out</v-btn>
-		</v-toolbar-items>
+	</v-toolbar-items>
 	</v-toolbar>
 </template>
 <script>
