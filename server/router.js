@@ -1,4 +1,5 @@
 const Authentication = require('./controllers/authentication');
+const SongsController = require('./controllers/SongsController');
 const passportService = require('./services/passport');
 const passport = require('passport');
 const authenticationPolicy = require('./policies/authentication-policy');
@@ -12,4 +13,6 @@ module.exports = function(app){
 	})
 	app.post('/signup', authenticationPolicy, Authentication.signup);
 	app.post('/signin', requireSignin, Authentication.signin);
+	app.get('/songs', SongsController.index);
+	app.post('/songs', SongsController.post)
 }
