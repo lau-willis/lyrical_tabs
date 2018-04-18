@@ -7,7 +7,7 @@ const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
 //DB setup
-mongoose.connect('mongodb://admin:admin@ds141786.mlab.com:41786/lyrical');
+mongoose.connect(process.env.MONGO_URI || config.MONGO_URI);
 
 app.use(morgan('combined'));
 app.use(bodyParser.json({type: '*/*'}));
